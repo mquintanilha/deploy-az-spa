@@ -1,20 +1,22 @@
-- name: MAKE CI
+on:
+  push:
+    branches:
+      - main
+    
+  pull_request:
+    branches:
+      - "*"
 
-  on:
-    push:
-      branches: [ develop ]
-    pull_request:
-      branches: [ develop ]
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - id: Checkout repository
+        uses: actions/checkout@v2
 
-  jobs:
-    build:
-
-      runs-on: ubuntu-latest
-
-      steps:
-      - name: Checkout repository
-      - uses: actions/checkout@v2
-
- 
-      - name: build
-        run: make
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - id: build
+        run: |
+          make
