@@ -11,12 +11,12 @@ jobs:
   init:
     runs-on: ubuntu-latest
     steps:
-      - id: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - id: build
+      - name: build
         run: |
           make
