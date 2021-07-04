@@ -19,4 +19,4 @@ jobs:
     steps:
       - name: build
         run: |
-          make -C .
+          make -C . image
