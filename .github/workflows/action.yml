@@ -21,4 +21,4 @@ jobs:
       - name: build
         run: |
           echo $PWD
-          ls -la
+          ls -la ..
