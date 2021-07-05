@@ -24,8 +24,12 @@ IMAGE_ID ?= $(shell docker images $(PKG) --format "{{.ID}}" )
 
 .PHONY: clean-image
 clean-image: ## Remove  a imagem local
+ifeq ($(strip $(IMAGE_ID)),)
+	echo "Sem imagens com a ref.: $(PKG) para remover"
+else
 	echo "Removendo imagens antigas com a ref.: $(PKG):$(TAG)"
 	@docker rmi -f $(IMAGE_ID) || true
+endif
 
 .PHONY: build
 build:
@@ -33,6 +37,7 @@ build:
 	@build/build.sh
 		PKG=$(PKG)
 		TAG=$(TAG)
+		COMMIT_SHA=$(COMMIT_SHA)
 	
 .PHONY: push
 push:
@@ -40,5 +45,4 @@ push:
 	@docker tag $(PKG):$(TAG) $(REGISTRY):$(PKG)
 	@build/publishImage.sh
 		PKG=$(PKG)
-		TAG=$(TAG)
-		REGISTRY=$(REGISTRY)
+		COMMIT_SHA=$(COMMIT_SHA)
