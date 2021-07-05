@@ -1,6 +1,6 @@
 #!/bin/bash
 
 docker push \
-${REGISTRY}:${PKG}
+${COMMIT_SHA}:${PKG}
 
 
