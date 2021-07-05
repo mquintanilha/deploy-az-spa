@@ -37,7 +37,6 @@ build:
 	@build/build.sh
 		PKG=$(PKG)
 		TAG=$(TAG)
-		COMMIT_SHA=$(COMMIT_SHA)
 	
 .PHONY: push
 push:
@@ -45,4 +44,5 @@ push:
 	@docker tag $(PKG):$(TAG) $(REGISTRY):$(PKG)
 	@build/publishImage.sh
 		PKG=$(PKG)
-		COMMIT_SHA=$(COMMIT_SHA)
+		TAG=$(TAG)
+		REGISTRY=$(REGISTRY)

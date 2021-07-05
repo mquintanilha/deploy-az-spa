@@ -2,4 +2,4 @@
 
 docker build . \
 --file Dockerfile \
---tag ${PKG}_${COMMIT_SHA}:${TAG}
+--tag ${PKG}:${TAG}
