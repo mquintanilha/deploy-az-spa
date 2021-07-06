@@ -1,20 +1,17 @@
 # Challenge
 _Automation solution for deployment of the static site._
-                                                                    
- __PROJECT__-->__LOCAL RUN__
- __LOCAL RUN__-->__MAKE AUTO__
- __MAKE AUTO__-->__BUILD DOCKER IMAGE__
- __MAKE AUTO__-->__DOCKER RUN__ 
-                                                                    
 
-## What we're using in the project:
+![alt text for image](resources/local_flow.png)
+                                                                    
+> [!IMPORTANTE]
+> ## What we're using in the project:
 
-* Github Actions; 
-* Terraform tools; 🚀
-* Docker tools;
-* K8S in AKS;
-* Azure Web App;
-* Helm; 🥰
+> * Github Actions; 
+> * Terraform tools; 🚀
+> * Docker tools;
+> * K8S in AKS;
+> * Azure Web App;
+> * Helm; 🥰
 
 
 ## Please make sure that your environment meets these pre-reqs:
