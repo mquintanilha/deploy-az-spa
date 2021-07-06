@@ -26,8 +26,9 @@ __Local Executing__
 
 _TODO_
 
-_1 - Clone this project;_
-_2 - Executing the command cli __make__;_
+_* Clone this project;_
+
+_* Executing the command cli __make__;_
 
 __Ready! That's about it!__ 🎖️
 
