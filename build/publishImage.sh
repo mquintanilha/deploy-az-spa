@@ -2,5 +2,3 @@
 
 docker push \
 ${REGISTRY}:${PKG}
-
-
