@@ -1,10 +1,11 @@
 # Challenge
 _Automation solution for deployment of the static site._
-                                                                    ========================
-===============       =================      =================      = _BUILD DOCKER IMAGE_ =
-= __PROJECT__ =  ---> = __LOCAL RUN__ = ---> = __MAKE AUTO__ = ---> ========================
-===============       =================      =================      =     _DOCKER RUN_     =
-                                                                    ========================
+                                                                    
+ __PROJECT__-->__LOCAL RUN__
+ __LOCAL RUN__-->__MAKE AUTO__
+ __MAKE AUTO__-->__BUILD DOCKER IMAGE__
+ __MAKE AUTO__-->__DOCKER RUN__ 
+                                                                    
 
 ## What we're using in the project:
 
