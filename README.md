@@ -3,7 +3,6 @@ _Automation solution for deployment of the static site._
 
 ![alt text for image](resources/local_flow.png)
                                                                     
-> [!IMPORTANTE]
 > ## What we're using in the project:
 
 > * Github Actions; 
