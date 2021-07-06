@@ -16,7 +16,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: ${{ github.workspace }}
-          token: ${{ secrets.repo_pipeline }}
           clean: false
   build:
     runs-on: ubuntu-latest
