@@ -14,9 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          repository: 'mquintanilha/remessa-challenge'
-          token: '{secrets.PIPES_TOKEN}'
           ref: ${{ github.event.pull_request.head.sha }}
+          run: |
+            git clone https://github.com/mquintanilha/remessa-challenge
 
   build:
     runs-on: ubuntu-latest
