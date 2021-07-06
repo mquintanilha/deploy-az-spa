@@ -35,6 +35,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: user/app:latest
+          tags: ${{ github.event.actor.display_login }}/${{ github.event.repo.name }}:${{ github.event.pull_request.head.sha }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
