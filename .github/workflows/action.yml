@@ -38,3 +38,15 @@ jobs:
           tags: 8eab29e/remessa-corp:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+  
+  deploy:
+    runs-on: ubuntu-latest
+    need: build
+    steps:
+      - name: Deploy resources
+        id: deploy_resource
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.4
+      - name: Inicial validation
+        run: terraform init
