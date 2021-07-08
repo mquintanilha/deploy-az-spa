@@ -43,10 +43,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: ${{ github.workspace }}
+
       - name: Deploy resources
         id: deploy_resource
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.15.4
+
       - name: Inicial validation
-        run: terraform init
+        run: terraform init ${{ github.workspace }}
