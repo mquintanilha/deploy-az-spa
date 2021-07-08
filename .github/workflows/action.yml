@@ -41,9 +41,12 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: 
         uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.4
         run: terraform init
 
         id: plan
