@@ -41,18 +41,12 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
-
+    need: build
     steps:
-      - name: Resource deployment
+      - name: Deploy resources
+        id: deploy_resource
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.15.4
+      - name: Inicial validation
         run: terraform init
-
-        id: plan
-        run: terraform plan -no-color
-
-        run: echo ${{ steps.plan.outputs.stdout }}
-        run: echo ${{ steps.plan.outputs.stderr }}
-        run: echo ${{ steps.plan.outputs.exitcode }}
-      
