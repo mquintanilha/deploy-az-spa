@@ -42,7 +42,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./deploy
+      working-directory: ./deploy/site
     needs: build
     steps:
       - name: Checkout repository
@@ -57,4 +57,4 @@ jobs:
           terraform_version: 0.15.4
 
       - name: Inicial validation
-        run: terraform init -chdir=${{ env.working-directory}}
+        run: terraform -chdir=${{ env.working-directory }} init
