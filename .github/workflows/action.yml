@@ -61,3 +61,6 @@ jobs:
         with:
           github-token: ${{ secrets.CHALLENGE_TOKEN }}
         run: terraform -chdir=${{ env.working-directory }} init
+
+      - name: Inicial validation
+        run: terraform -chdir=${{ env.working-directory }} init
