@@ -46,7 +46,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout repository
-        uses: actions/checkout@develop
+        uses: actions/checkout@v2
         working-directory: ./deploy
         run: |
           ls -R ${{ env.working-directory }}
