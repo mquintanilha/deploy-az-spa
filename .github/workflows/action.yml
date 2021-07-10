@@ -58,3 +58,5 @@ jobs:
 
       - name: Inicial validation
         run: terraform -chdir=${{ env.working-directory }} init
+        with:
+          github-token: ${{ secrets.PIPES_TOKEN }}
