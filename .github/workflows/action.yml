@@ -45,6 +45,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        work-directory: ./deploy
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: ${{ github.workspace }}
