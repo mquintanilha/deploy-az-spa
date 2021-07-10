@@ -55,10 +55,11 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.15.4
-          github-token: ${{ secrets.CHALLENGE_TOKEN }}
 
       - name: Inicial validation
-        run: terraform -chdir=${{ env.working-directory }} init
+        uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.CHALLENGE_TOKEN }}
 
       - name: Inicial validation
         run: terraform -chdir=${{ env.working-directory }} init
