@@ -43,6 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./deploy/site
+      GITHUB_TOKEN: ${{ secrets.CHALLENGE_TOKEN }}
     needs: build
     steps:
       - name: Checkout repository
@@ -56,10 +57,6 @@ jobs:
         with:
           terraform_version: 0.15.4
 
-      - name: Inicial validation - Step 1
-        uses: actions/github-script@0.9.0
-        with:
-          github-token: ${{ secrets.CHALLENGE_TOKEN }}
       
       - name :  Inicial validation - Step 2
         run: terraform -chdir=${{ env.working-directory }} init
