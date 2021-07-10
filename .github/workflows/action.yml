@@ -56,8 +56,10 @@ jobs:
         with:
           terraform_version: 0.15.4
 
-      - name: Inicial validation
+      - name: Inicial validation - Step 1
         uses: actions/github-script@0.9.0
         with:
           github-token: ${{ secrets.CHALLENGE_TOKEN }}
-          run: terraform -chdir=${{ env.working-directory }} init
+      
+      - name :  Inicial validation - Step 2
+        run: terraform -chdir=${{ env.working-directory }} init
