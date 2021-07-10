@@ -48,8 +48,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         working-directory: ./deploy
-        run: |
-          ls -R ${{ env.working-directory }}
+      - name: Test env
+        run: ls -R ${{ env.working-directory }}
 #        with:
 #          ref: ${{ github.event.pull_request.head.sha }}
 #          path: ${{ github.workspace }}
