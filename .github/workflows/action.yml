@@ -47,7 +47,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        working-directory: ./deploy
       - name: Test env
         run: ls -R ${{ env.working-directory }}
 #        with:
