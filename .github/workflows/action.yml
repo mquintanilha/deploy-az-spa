@@ -59,5 +59,4 @@ jobs:
 
       
       - name :  Inicial validation - Step 2
-        with:
-          run: terraform -chdir=${{ env.working-directory }} init
+        run: terraform -chdir=${{ env.working-directory }} init
