@@ -56,4 +56,4 @@ jobs:
           terraform_version: 0.15.4
 
       - name: Inicial validation
-        run: terraform init ${{ github.workspace }}
+        run: terraform init
