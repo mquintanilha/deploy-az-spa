@@ -48,15 +48,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-#      - name: Test env
-#        run: ls -R ${{ env.working-directory }}
 
       - name: Deploy resources
         id: deploy_resource
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.15.4
-
       
-      - name :  Inicial validation - Step 2
+      - name: Terraform Init
         run: terraform -chdir=${{ env.working-directory }} init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
