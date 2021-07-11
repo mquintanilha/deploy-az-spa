@@ -59,8 +59,8 @@ jobs:
         uses: Azure/login@v1
         with:
         # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
       
       - name: Terraform Init
         run: terraform -chdir=${{ env.working-directory }} init
