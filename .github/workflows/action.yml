@@ -58,9 +58,9 @@ jobs:
       - name: Azure Login
         uses: azure/CLI@v1
         with:
-        azcliversion: 2.23.0
-        inlineScript: | 
-            az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+          azcliversion: 2.23.0
+          inlineScript: | 
+              az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 
       - name: Terraform Init
         run: terraform -chdir=${{ env.working-directory }} init
