@@ -60,7 +60,7 @@ jobs:
         with:
           azcliversion: 2.23.0
           inlineScript: | 
-              az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+              az login --allow-no-subscriptions --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
               export ARM_CLIENT_ID="${{ secrets.CLIENT_ID }}"
               export ARM_CLIENT_SECRET="${{ secrets.CLIENT_SECRET }}"
               export ARM_SUBSCRIPTION_ID="${{ secrets.SUBSCRIPTION_ID }}"
