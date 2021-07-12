@@ -61,6 +61,10 @@ jobs:
           azcliversion: 2.23.0
           inlineScript: | 
               az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+              export ARM_CLIENT_ID="${{ secrets.CLIENT_ID }}"
+              export ARM_CLIENT_SECRET="${{ secrets.CLIENT_SECRET }}"
+              export ARM_SUBSCRIPTION_ID="${{ secrets.SUBSCRIPTION_ID }}"
+              export ARM_TENANT_ID="${{ secrets.TENANT_ID }}"
 
       - name: Terraform Init
         run: terraform -chdir=${{ env.working-directory }} init
