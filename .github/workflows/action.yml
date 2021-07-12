@@ -55,21 +55,21 @@ jobs:
         with:
           terraform_version: 0.15.4
 
-     # - name: Azure Login
-     #   uses: azure/CLI@v1
-     #   with:
-     #     azcliversion: 2.23.0
-     #     inlineScript: | 
-     #         az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
-     #         export ARM_CLIENT_ID="${{ secrets.CLIENT_ID }}"
-     #         export ARM_CLIENT_SECRET="${{ secrets.CLIENT_SECRET }}"
-     #         export ARM_SUBSCRIPTION_ID="${{ secrets.SUBSCRIPTION_ID }}"
-     #         export ARM_TENANT_ID="${{ secrets.TENANT_ID }}"
-
-      - name: AZRM Login
-        uses: azure/login@v1
+      - name: Azure Login
+        uses: azure/CLI@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          azcliversion: 2.23.0
+          inlineScript: | 
+              az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+              export ARM_CLIENT_ID="${{ secrets.CLIENT_ID }}"
+              export ARM_CLIENT_SECRET="${{ secrets.CLIENT_SECRET }}"
+              export ARM_SUBSCRIPTION_ID="${{ secrets.SUBSCRIPTION_ID }}"
+              export ARM_TENANT_ID="${{ secrets.TENANT_ID }}"
+
+    #  - name: AZRM Login
+    #    uses: azure/login@v1
+    #    with:
+    #      creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform Init
         run: terraform -chdir=${{ env.working-directory }} init
