@@ -9,6 +9,7 @@ BUILD_ID ?= "UNSET"
 RUN_CONTAINER = false
 REGISTRY = 8eab29e/remessa-corp
 TERRAFORM_PROJECT_PATH = ./deploy/site
+TERRAFORM_APPLY = true
 
 .EXPORT_ALL_VARIABLES: ## Exporta todas as variáveis.
 
@@ -50,6 +51,11 @@ push:
 
 .PHONY: deploy
 deploy:
-	terraform -chdir=$(TERRAFORM_PROJECT_PATH) init 
+	terraform -chdir=$(TERRAFORM_PROJECT_PATH) init -reconfigure
 	terraform -chdir=$(TERRAFORM_PROJECT_PATH) validate
 	terraform -chdir=$(TERRAFORM_PROJECT_PATH) plan
+ifeq ($(TERRAFORM_APPLY), true)
+	terraform -chdir=$(TERRAFORM_PROJECT_PATH) apply -auto-approve
+else
+	echo "Se for aplicar o planejado informe o valor true para a variavel TERRAFORM_APPLY"
+endif
