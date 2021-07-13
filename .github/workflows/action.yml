@@ -44,6 +44,10 @@ jobs:
     env:
       working-directory: ./deploy/site
       GITHUB_TOKEN: ${{ secrets.CHALLENGE_TOKEN }}
+      ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
+      
     needs: build
     steps:
       - name: Checkout repository
@@ -55,34 +59,21 @@ jobs:
         with:
           terraform_version: 0.15.4
 
-      - name: Terraform Steps
+      - name: AZRM Login
         uses: azure/CLI@v1
         with:
           azcliversion: 2.23.0
           inlineScript: |
-              export ARM_USE_MSI=true 
-              export ARM_CLIENT_ID="${{ secrets.CLIENT_ID }}"
-              export ARM_SUBSCRIPTION_ID="${{ secrets.SUBSCRIPTION_ID }}"
-              export ARM_TENANT_ID="${{ secrets.TENANT_ID }}"
               az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
-              ${{ env.TERRAFORM_CLI_PATH }}/terraform -chdir=${{ env.working-directory }} init
-              ${{ env.TERRAFORM_CLI_PATH }}/terraform -chdir=${{ env.working-directory }} plan
 
+      - name: Terraform Init
+        run: terraform -chdir=${{ env.working-directory }} init
 
+      - name: Terraform Validate
+        id: validate
+        run: terraform -chdir=${{ env.working-directory }} validate -no-color
 
-     # - name: AZRM Login
-     #  uses: azure/login@v1.1
-     #   with:
-     #     creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-
-     # - name: Terraform Init
-     #   run: terraform -chdir=${{ env.working-directory }} init
-
-     # - name: Terraform Validate
-     #   id: validate
-     #   run: terraform -chdir=${{ env.working-directory }} validate -no-color
-
-     # - name: Terraform Plan
-     #   id: plan
-     #   run: terraform -chdir=${{ env.working-directory }} plan -no-color
-     #   continue-on-error: true
+      - name: Terraform Plan
+        id: plan
+        run: terraform -chdir=${{ env.working-directory }} plan -no-color
+        continue-on-error: true
