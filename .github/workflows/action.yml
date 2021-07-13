@@ -55,7 +55,7 @@ jobs:
         with:
           terraform_version: 0.15.4
 
-      - name: Azure Login
+      - name: Terraform Steps
         uses: azure/CLI@v1
         with:
           azcliversion: 2.23.0
@@ -65,6 +65,9 @@ jobs:
               export ARM_SUBSCRIPTION_ID="${{ secrets.SUBSCRIPTION_ID }}"
               export ARM_TENANT_ID="${{ secrets.TENANT_ID }}"
               az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+              terraform -chdir=${{ env.working-directory }} init
+              terraform -chdir=${{ env.working-directory }} plan
+
 
 
      # - name: AZRM Login
@@ -72,14 +75,14 @@ jobs:
      #   with:
      #     creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
 
-      - name: Terraform Init
-        run: terraform -chdir=${{ env.working-directory }} init
+     # - name: Terraform Init
+     #   run: terraform -chdir=${{ env.working-directory }} init
 
-      - name: Terraform Validate
-        id: validate
-        run: terraform -chdir=${{ env.working-directory }} validate -no-color
+     # - name: Terraform Validate
+     #   id: validate
+     #   run: terraform -chdir=${{ env.working-directory }} validate -no-color
 
-      - name: Terraform Plan
-        id: plan
-        run: terraform -chdir=${{ env.working-directory }} plan -no-color
-        continue-on-error: true
+     # - name: Terraform Plan
+     #   id: plan
+     #   run: terraform -chdir=${{ env.working-directory }} plan -no-color
+     #   continue-on-error: true
