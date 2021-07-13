@@ -33,10 +33,3 @@ __Ready! That's about it!__ 🎖️
 ## Important
 
 > If you to running local docker image, set **true** as  value of the **RUN_CONTAINER** variable.
-
-
-
-
-
-
-
