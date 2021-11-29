@@ -1,7 +1,6 @@
 #
 # Nginx Dockerfile
 #
-
 # Pull base image. !REFACTORING <Define private registry (e.p. ACR, Docker Hub account)> 
 FROM ubuntu
 
